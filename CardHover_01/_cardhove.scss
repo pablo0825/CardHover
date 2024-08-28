@@ -1,0 +1,99 @@
+
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.frame {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vw;
+
+    &_wrapper {
+        position: relative;//基準點，相對
+        width: 320px;
+        height: 360px;
+        background-color: rgba(255, 255, 255, 0.3);
+        box-shadow: 10px 10px 30px rgba(0, 255, 76, 0.1);
+        border-radius: 6px;
+        overflow: hidden;//超出物件範圍就隱藏
+
+        img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            object-fit: cover;//覆蓋，超出範圍不見
+            clip-path: circle(100% at center 35%);//把物件變成圓圈的方法
+            object-position: top;//物件位置置頂
+            transition: 0.5s ease;
+            z-index: 100;
+        }
+    }
+
+    &_wrapper:hover img {
+        top: -12px;
+        clip-path: circle(70px at center 35%);
+    }
+
+    // 動畫名稱：fadeTop 
+    //完成時間：1S 
+    //延遲時間：calc(var(--i) * 0.1s) 
+    //動畫曲線：ease 
+    //完成動畫後狀態：forwards(保持不變)
+    &_wrapper:hover &_profile {
+        animation: fadeTop 1s calc(var(--i) * 0.1s) ease forwards;
+    }
+
+    &_profile {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: relative;
+        width: 100%;
+        top: 200px;
+        line-height: 48px;
+
+        h3 {
+            font-size: 32px;
+        }
+    }
+
+    &_wrapper:hover &_profile h3 {
+        animation: fadeTop 1s calc(var(--i) * 0.1s) ease forwards;
+    }
+
+    &_wrapper:hover &_profile p {
+        animation: fadeTop 1s calc(var(--i) * 0.1s) ease forwards;
+    }
+
+    &_social-media {
+        display: flex;
+        gap: 24px;
+
+        a {
+            display: block;
+            opacity: 0;
+        }
+    }
+
+    &_wrapper:hover &_social-media a {
+        animation: fadeTop 1s calc(var(--i) * 0.1s) ease forwards;
+    }
+}
+
+@keyframes fadeTop {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
